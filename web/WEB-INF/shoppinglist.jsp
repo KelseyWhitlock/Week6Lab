@@ -27,10 +27,12 @@
             <ul>
                 <c:forEach items="${itemlist}" var="items">
                     <li>
-                        <input type="radio" name="itemname" value="${itemlist}">
+                        <input type="radio" name="itemname" value="${itemlist}"><br>
                     </li>
                 </c:forEach>  
-            </ul>
+            </ul><br>
+            <input type="submit" value="Delete">
+            <input type="hidden" name="action" value="delete">
            
         </form>
     </body>
