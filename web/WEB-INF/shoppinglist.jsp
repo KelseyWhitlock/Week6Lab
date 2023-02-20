@@ -24,9 +24,10 @@
         <br>
         <form action="" method="post">
             <ul>
-                <c:forEach items="${itemlist}" var="items">
+                <c:forEach items="${itemname}" var="items">
                     <li>
-                        <input type="radio" name="itemname" value="${itemlist}"><br>
+                        <input type="radio" name="itemname" value="${itemname}">
+                        ${itemname}
                     </li>
                 </c:forEach>  
             </ul><br>

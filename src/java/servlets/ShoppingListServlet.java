@@ -48,6 +48,7 @@ public class ShoppingListServlet extends HttpServlet {
         
         switch(action){
             case "register": if(username == null || username.equals("")){
+                request.setAttribute("message", "Enter a name");
                getServletContext().getRequestDispatcher("/WEB-INF/register.jsp").forward(request,response);  
             }else{
                 session.setAttribute("name", username);
@@ -57,10 +58,18 @@ public class ShoppingListServlet extends HttpServlet {
             case "logout": itemlist.clear();
              session.invalidate();
              getServletContext().getRequestDispatcher("/WEB-INF/register.jsp").forward(request,response); 
-            
+             break;
+            case "add":itemlist.add(add);
+            session.setAttribute("itemname",itemlist);
+             getServletContext().getRequestDispatcher("/WEB-INF/shoppinglist.jsp").forward(request,response);
+             break;
+            case "delete":itemlist.remove(list);
+            session.setAttribute("itemname",itemlist);
+            getServletContext().getRequestDispatcher("/WEB-INF/shoppinglist.jsp").forward(request,response);
+            break;    
         }
         
-       
+        getServletContext().getRequestDispatcher("/WEB-INF/shoppinglist.jsp").forward(request,response);
     }
 
    
