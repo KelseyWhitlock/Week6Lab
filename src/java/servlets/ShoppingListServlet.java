@@ -42,32 +42,37 @@ public class ShoppingListServlet extends HttpServlet {
         String action = request.getParameter("action");
         String username = request.getParameter("name");
         String add = request.getParameter("itemadd");
-        String list = request.getParameter("items");
-        ArrayList<String> itemlist = new ArrayList<>();
+        String list = request.getParameter("itemthing");
+        ArrayList<String> itemlist;
         HttpSession session = request.getSession();
         
-        switch(action){
-            case "register": if(username == null || username.equals("")){
+        if(session.getAttribute("items")== null){
+            itemlist = new ArrayList<>();
+        }else{
+            itemlist = (ArrayList<String>)session.getAttribute("items");
+        }
+        
+            if(action.equals("register")){
+             if(username == null || username.equals("")){
                 request.setAttribute("message", "Enter a name");
                getServletContext().getRequestDispatcher("/WEB-INF/register.jsp").forward(request,response);  
             }else{
                 session.setAttribute("name", username);
                 getServletContext().getRequestDispatcher("/WEB-INF/shoppinglist.jsp").forward(request,response);
-            }
-            break;
-            case "logout": itemlist.clear();
+            }}
+            if(action.equals("logot")){ itemlist.clear();
              session.invalidate();
-             getServletContext().getRequestDispatcher("/WEB-INF/register.jsp").forward(request,response); 
-             break;
-            case "add":itemlist.add(add);
-            session.setAttribute("itemname",itemlist);
-             getServletContext().getRequestDispatcher("/WEB-INF/shoppinglist.jsp").forward(request,response);
-             break;
-            case "delete":itemlist.remove(list);
-            session.setAttribute("itemname",itemlist);
+             getServletContext().getRequestDispatcher("/WEB-INF/register.jsp").forward(request,response); }
+            
+            if(action.equals("add")){itemlist.add(add);
+            session.setAttribute("items",itemlist);
+             getServletContext().getRequestDispatcher("/WEB-INF/shoppinglist.jsp").forward(request,response);}
+            
+            if(action.equals("delete")){itemlist.remove(list);
+            session.setAttribute("items",itemlist);
             getServletContext().getRequestDispatcher("/WEB-INF/shoppinglist.jsp").forward(request,response);
-            break;    
-        }
+            }    
+        
         
         getServletContext().getRequestDispatcher("/WEB-INF/shoppinglist.jsp").forward(request,response);
     }
