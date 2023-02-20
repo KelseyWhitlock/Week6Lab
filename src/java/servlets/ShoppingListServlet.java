@@ -29,7 +29,7 @@ public class ShoppingListServlet extends HttpServlet {
             session.invalidate();
             getServletContext().getRequestDispatcher("/WEB-INF/register.jsp").forward(request,response);    
         }else if(username != null){
-            response.sendRedirect("shoppinglist");
+            response.sendRedirect("ShoppingList");
             return;
         }
         getServletContext().getRequestDispatcher("/WEB-INF/register.jsp").forward(request,response);     

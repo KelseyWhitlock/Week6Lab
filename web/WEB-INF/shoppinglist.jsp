@@ -13,12 +13,11 @@
     </head>
     <body>
         <h1>Shopping List</h1>
-        Hello, ${name}
-        <a href="shoppinglist>action=logout">Logout</a> <br>
+        Hello, ${name} <br>
+        <a href="ShoppingList>action=logout">Logout</a> <br>
         <h2>List</h2><br>
         <form action="" method="post">
-                Add Items: <input type="radio" name="itemadd"> <br>
-                <ul>    
+            Add Items: <input type="text" name="itemadd">    
                 <input type="submit" value="Add">
                 <input type="hidden" name="action" value="add">  
         </form>
